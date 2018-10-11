@@ -1,8 +1,10 @@
-8d188ee6ba56229ab540a812832d678a *DESCRIPTION
-7a3870c706978fba5746ec743b494580 *NAMESPACE
-0d338645358ed1f757278ae256222b22 *R/PrometheeS4.R
+768ff3b917078df17f73372b7ce3b088 *DESCRIPTION
+c3752c74c8faf1370ab2153493084213 *NAMESPACE
+6747bd43d486d3057bc5e12a063cd93c *R/PrometheeS4.R
 f4e5d487375881bfff010f333a149af6 *R/RMCriteria.R
-056d428b2602b7d6d05ffd096085bf2c *R/RcppExports.R
+d4541f802f1aaa0f8c6d7641fde86baf *R/RcppExports.R
+7b0598ab4aa9847f14ac3debed9eafb3 *R/integrais_r.R
+8c9410f703365e29260ebf6ea85f58f6 *R/integrais_r_old.R
 c32148cc23d0b78dba93452b61bf7896 *README.md
 bf9057115dbdae479642e2230378c0ad *man/PrometheeI.Rd
 30dca3feb356b55da165a477dacf1e89 *man/PrometheeII.Rd
@@ -24,8 +26,8 @@ d2cf79b901db5e03aba8b5d7a8e42cb6 *man/RPrometheeII-class.Rd
 b646fbffbb82b7daf1a825b6e1c7c0da *man/RPrometheeIII.Rd
 e1dbd1e74f84e6bfdf5025bce6d60e2b *man/RPrometheeIV-class.Rd
 93fc5ffdbc89253b9c0d045981474f9a *man/RPrometheeIV.Rd
-015f40c2fc9f7c54153dafde59cd82f9 *man/RPrometheeIVKernel-class.Rd
-ed890d23fa27ee9fd7fce39b5f509e4f *man/RPrometheeIVKernel.Rd
+1d0715c98a834a7fc4480457e34a6d5b *man/RPrometheeIVKernel-class.Rd
+dc9cfc3cf228f4e9442e59ba575aba7b *man/RPrometheeIVKernel.Rd
 a020eef915c487f83121e33607f4a5e0 *man/RPrometheeV-class.Rd
 00d1fa8fc9a0eaef744fc0a5f3da15b0 *man/RPrometheeV.Rd
 455f30cd9736709cf1a8a097197e2684 *man/SensitivityAnalysis-class.Rd
@@ -78,7 +80,9 @@ e866f1f5fdc8f1153e6725bc9364a3bb *src/Preference.h
 80f79aa27433c68d590193430b0bd8d3 *src/PrometheeIII.cpp
 ca27ccd19f3a1f5a025c8b9578247e6d *src/PrometheeIV.cpp
 3faa36fe6840b8bcaf8f1486e1ebefee *src/PrometheeIVKernel.cpp
-48bce978b43875a171b5659a12e476cb *src/RcppExports.cpp
+1988bfb9aaa614895c673862aeac8703 *src/RcppExports.cpp
+b695bb7256b96109f95f32b58b9676ed *src/integral.cpp
+39a55a4f61269596bcadf31b9f0a2d85 *src/kernel.cpp
 f36c0d166d0767319216c6f90742fb67 *tests/PrometheeI.R
 c000b917277839bbf08177717a7313c4 *tests/PrometheeII.R
 00bbae991919a81b421419533e06dbd8 *tests/PrometheeIII.R

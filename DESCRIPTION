@@ -1,7 +1,7 @@
 Package: RMCriteria
 Type: Package
 Title: Multicriteria Package
-Version: 0.1.0
+Version: 0.1.1
 Author: Pedro Albuquerque and Gustavo Monteiro
 BugReports: https://github.com/lamfo-unb/RMCriteria
 Maintainer: Pedro Albuquerque <pedroa@unb.br>
@@ -16,6 +16,6 @@ Imports: Rcpp, RcppNumerical, linprog, lpSolve, ggplot2, gridExtra,
 SystemRequirements: GNU make
 RoxygenNote: 6.0.1
 NeedsCompilation: yes
-Packaged: 2018-04-12 17:30:56 UTC; B2982924
+Packaged: 2018-10-11 05:41:17 UTC; Gustavo
 Repository: CRAN
-Date/Publication: 2018-04-13 08:27:46 UTC
+Date/Publication: 2018-10-11 13:10:03 UTC
