@@ -65,8 +65,8 @@ validRPromethee <- function(object) {
              length(object@vecMaximiz) == length(object@vecWeights),
              ncol(object@datMat) == length(object@prefFunction),
              ncol(object@datMat) == nrow(object@parms)         ,
-             object@prefFunction>=0 && object@prefFunction<=5  )
-  if(any(object@vecWeights < 0 || object@vecWeights >1)) {
+             length(object@prefFunction)>=0 && length(object@prefFunction)<=5  )
+  if(any(object@vecWeights < 0) || any(object@vecWeights >1)) {
     stop("All weights must be between 0 and 1")
   }
   if(length(object@alphaVector) == 0 || length(object@band) == 0|| length(object@constraintDir) == 0 || length(object@bounds) == 0){
@@ -960,12 +960,14 @@ setClass(
   Class = "RPrometheeIVKernel",
   slots = c(PhiPlus        = "numeric",
             PhiMinus       = "numeric",
+            Index          = "numeric",
             alternatives   = "character",
             criterias      = "character",
             datMat         = "matrix"),
   prototype = list(
     PhiPlus        = numeric(0),
     PhiMinus       = numeric(0),
+    Index          = numeric(0),
     alternatives   = character(0),
     criterias      = character(0),
     datMat         = matrix(0))
@@ -1005,6 +1007,8 @@ setClass(
 #'   \item{PhiPlus} {The resulting PhiPlus from the alternatives for all
 #'   criterias.}
 #'   \item{PhiMinus} {The resulting PhiMinus from the alternatives for all
+#'   criterias}
+#'   \item{Index} {The resulting Index from the alternatives for all
 #'   criterias}
 #'   \item{alternatives} {The alternatives names.}
 #'   \item{criterias} {The criterias names.}
@@ -1113,51 +1117,10 @@ setMethod(
     for(c in 1:ncol(datMat)) if(!vecMaximiz[c]) datMat[,c] <- -datMat[,c];
     #Create bandwitdhs, in case it's not provided
     if(is.null(band)){band <- as.matrix(apply(datMat,2,bw.nrd0))}
-
-    k <- 1
-    y <- NULL
-    plus <- c(rep(NA, nrow(datMat)))
-    minus <- c(rep(NA, nrow(datMat)))
-    # Usual preference function
-    usualpref <- function(x,w){
-      ifelse(w - x >= 0, 1, 0)
-    }
-
-    for(k in 1:ncol(datMat)){
-      z <- data.frame(datMat)[1, k]
-      y <- datMat[,k]
-
-      plus <- apply(data.frame(y), 1, function(w){
-
-
-        integrand <- function(x){
-          (1/sqrt(2*pi))*sum(exp(-0.5*((usualpref(x,z) - usualpref(x,y))/band[k])^2))*usualpref(x,z)
-        }
-
-        plus[k] <- integrate(integrand, 0, 1)$value
-        #  })
-
-      }
-      )}
-    for(k in 1:ncol(datMat)){
-      z <- data.frame(datMat)[1, k]
-      y <- datMat[,k]
-
-      minus <- apply(data.frame(y), 1, function(w){
-
-
-        integrand <- function(x){
-          (1/sqrt(2*pi))*sum(exp(-0.5*((usualpref(z,x) - usualpref(y,x))/band[k])^2))*usualpref(z,x)
-        }
-
-        minus[k] <- integrate(integrand, 0, 1)$value
-      }
-      )}
-
-
+    #results <- RMCriteria::PrometheeIVKernel(datMat_temp, vecWeights, prefFunction, parms, band, normalize)
+    results <- RMCriteria::brutePrometheeIVKernel(datMat_temp, vecWeights, prefFunction, parms, band, normalize)
     #Set the class
-    #resultsClass <- new("RPrometheeIVKernel",PhiPlus=results[[1]], PhiMinus=results[[2]], alternatives = alternatives, criterias = criterias, datMat = datMat_temp)
-    resultsClass <- new("RPrometheeIVKernel", PhiPlus = plus, PhiMinus = minus, alternatives = alternatives, criterias = criterias, datMat = datMat_temp)
+    resultsClass <- new("RPrometheeIVKernel",PhiPlus=results[[1]], PhiMinus=results[[2]], Index=results[[3]], alternatives = alternatives, criterias = criterias, datMat = datMat_temp)
     #Return the class
     return(resultsClass)
   }
